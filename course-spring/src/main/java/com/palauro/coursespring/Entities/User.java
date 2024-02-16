@@ -1,16 +1,26 @@
 package com.palauro.coursespring.Entities;
 
 import java.io.Serializable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-public class User implements Serializable{
+// Anotações para o JPA, de como converter os objetos para o modelo relacional.
+@Entity
+@Table(name = "tb_user") // Cria a tabela de users.
+public class User implements Serializable {
 
+    @Id //Mostra que é chave primaria.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto incrementação.
     private Long id;
     private String name;
     private String email;
     private String phone;
     private String password;
 
-    public User(){
+    public User() {
     }
 
     public User(Long id, String name, String email, String phone, String password) {
