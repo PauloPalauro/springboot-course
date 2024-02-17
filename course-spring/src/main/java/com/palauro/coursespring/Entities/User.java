@@ -1,10 +1,14 @@
 package com.palauro.coursespring.Entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 // Anotações para o JPA, de como converter os objetos para o modelo relacional.
@@ -12,13 +16,18 @@ import jakarta.persistence.Table;
 @Table(name = "tb_user") // Cria a tabela de users.
 public class User implements Serializable {
 
-    @Id //Mostra que é chave primaria.
+    @Id // Mostra que é chave primaria.
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto incrementação.
     private Long id;
     private String name;
     private String email;
     private String phone;
     private String password;
+
+    //Associação "Para muitos" o JPA não carrega -> [Client para muito pedidos = Não carrega os pedidos], lazy loading
+    @JsonIgnore // Associação de mão dupla, fica um loop de "Users chamando Orders e Orders chamando Users", @JsonIgnore = Faz oque foi falado acima.
+    @OneToMany(mappedBy = "client") // Opcional, Associação de "Um para muitos", colocar o nome do atributo do outro lado da associação.
+    private List<Order> orders = new ArrayList<>();
 
     public User() {
     }
@@ -69,6 +78,10 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     @Override
