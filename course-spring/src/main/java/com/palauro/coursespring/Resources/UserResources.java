@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +54,13 @@ public class UserResources {
         // no padrão HTTP, quando voce retorna um 201 é esperado que a
         // resposta contenha um cabeçalho chamado "location" contendo o
         // endereço do novo recurso que voce inseriu.
+    }
+
+
+    @DeleteMapping(value = "/{id}") // Indicar que o método responde do tipo DELETE do HTTP.
+    public ResponseEntity<Void> delete(@PathVariable Long id){ // Void porque não retorna nada.
+        service.delete(id);
+        return ResponseEntity.noContent().build(); // ResponseEntity.noContent() = resposta sem corpo, codigo HTTP 204.
     }
 
 }
