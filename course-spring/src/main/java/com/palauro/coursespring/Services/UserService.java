@@ -22,4 +22,8 @@ public class UserService {
         Optional<User> obj = repository.findById(id); // Optional = classe em Java que representa um container que pode ou não conter um valor.
         return obj.get();
     }
+
+    public User insert(User obj){
+        return repository.save(obj);
+    }
 }
