@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 // Classe que disponibiliza um Recurso Web correspondente a entidade User. Testa se o REST do SpringBoot ta funcionando.
@@ -61,6 +62,13 @@ public class UserResources {
     public ResponseEntity<Void> delete(@PathVariable Long id){ // Void porque não retorna nada.
         service.delete(id);
         return ResponseEntity.noContent().build(); // ResponseEntity.noContent() = resposta sem corpo, codigo HTTP 204.
+    }
+
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
+        obj = service.update(id, obj);
+        return ResponseEntity.ok().body(obj);
     }
 
 }
