@@ -10,7 +10,7 @@ import com.palauro.coursespring.Entities.User;
 import com.palauro.coursespring.Repository.UserRepository;
 import com.palauro.coursespring.Services.exceptions.DatabaseException;
 import com.palauro.coursespring.Services.exceptions.ResourceNotFoundException;
-
+import jakarta.persistence.EntityNotFoundException;
 
 @Service // Registra "O que a classe é". Um serviço do Spring.
 public class UserService {
@@ -27,27 +27,31 @@ public class UserService {
         return obj.orElseThrow(() -> new ResourceNotFoundException(id)); // Tenta dar o get, se não tiver lança uma exceção.
     }
 
-    public User insert(User obj){
+    public User insert(User obj) {
         return repository.save(obj);
     }
 
-    public void delete(Long id){
-        try{
+    public void delete(Long id) {
+        try {
             repository.deleteById(id);
-        }
-        catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
-        }
-        catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
-        
+
     }
 
-    public User update (Long id, User obj){
-        User entity = repository.getReferenceById(id); 
-        updateData(entity, obj);
-        return repository.save(entity);
+    public User update(Long id, User obj) {
+        try{
+            User entity = repository.getReferenceById(id);
+            updateData(entity, obj);
+            return repository.save(entity);
+        }
+        catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException(id);
+        }
+       
     }
 
     private void updateData(User entity, User obj) {
