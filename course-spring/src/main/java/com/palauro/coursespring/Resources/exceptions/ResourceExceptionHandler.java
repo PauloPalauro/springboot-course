@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-    @ExceptionHandler(Reso  urceNotFoundException.class) // Capaz de interceptar a requisição que deu exceção para cair nessa função. (X) -> Nome da exceção a ser interceptada.
+    @ExceptionHandler(ResourceNotFoundException.class) // Capaz de interceptar a requisição que deu exceção para cair nessa função. (X) -> Nome da exceção a ser interceptada.
     public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
         String error = "Resource not found";
         HttpStatus status = HttpStatus.NOT_FOUND; // 404 não achou
