@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.palauro.coursespring.Entities.User;
 import com.palauro.coursespring.Repository.UserRepository;
+import com.palauro.coursespring.Services.exceptions.ResourceNotFoundException;
 
 
 @Service // Registra "O que a classe é". Um serviço do Spring.
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findByID(Long id) {
         Optional<User> obj = repository.findById(id); // Optional = classe em Java que representa um container que pode ou não conter um valor.
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id)); // Tenta dar o get, se não tiver lança uma exceção.
     }
 
     public User insert(User obj){
@@ -32,7 +33,7 @@ public class UserService {
     }
 
     public User update (Long id, User obj){
-        User entity = repository.getReferenceById(id); //
+        User entity = repository.getReferenceById(id); 
         updateData(entity, obj);
         return repository.save(entity);
     }

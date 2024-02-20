@@ -49,24 +49,30 @@ public class UserResources {
                                                                 // e que ele será deserializado para um objeto "User"
         obj = service.insert(obj);
         // Quando queremos adicionar um recurso queremos o codigo 201 do HTTP
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri(); // Forma padrão de gerar esse endereço. Criando a URI.
-        return ResponseEntity.created(uri).body(obj); 
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri(); // Forma
+                                                                                                                      // padrão
+                                                                                                                      // de
+                                                                                                                      // gerar
+                                                                                                                      // esse
+                                                                                                                      // endereço.
+                                                                                                                      // Criando
+                                                                                                                      // a
+                                                                                                                      // URI.
+        return ResponseEntity.created(uri).body(obj);
         // ResponseEntity.created(URI) = Espera um Objeto "URI", por que
         // no padrão HTTP, quando voce retorna um 201 é esperado que a
         // resposta contenha um cabeçalho chamado "location" contendo o
         // endereço do novo recurso que voce inseriu.
     }
 
-
     @DeleteMapping(value = "/{id}") // Indicar que o método responde do tipo DELETE do HTTP.
-    public ResponseEntity<Void> delete(@PathVariable Long id){ // Void porque não retorna nada.
+    public ResponseEntity<Void> delete(@PathVariable Long id) { // Void porque não retorna nada.
         service.delete(id);
         return ResponseEntity.noContent().build(); // ResponseEntity.noContent() = resposta sem corpo, codigo HTTP 204.
     }
 
-
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
+    @PutMapping(value = "/{id}") // Indicar que o método responde do tipo PUT do HTTP.
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj) {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
