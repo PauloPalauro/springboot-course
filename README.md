@@ -4,6 +4,7 @@ Simples projeto em java com o framework Spring Boot, apenas para saber sobre seu
 
 # Tech Stack
 - Spring Boot
+- JPA / Hibernate
 - Maven
 - H2 Database Engine
 - Postman
