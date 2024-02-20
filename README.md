@@ -6,7 +6,7 @@ Simples projeto em java com o framework Spring Boot, apenas para saber sobre seu
 - Spring Boot
 - JPA / Hibernate
 - Maven
-- H2 Database Engine
+- H2 Database Engine (SQL)
 - Postman
 - IDE Vscode
 
