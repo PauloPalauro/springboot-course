@@ -3,8 +3,9 @@ package com.palauro.coursespring.Repository;
 import com.palauro.coursespring.Entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-// Arquivo responsavel por fazer operações com a entidade User
+// Camada de acesso a dados / Data access Layer (Repository)
 
+// Arquivo responsavel por fazer operações com a entidade User
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
