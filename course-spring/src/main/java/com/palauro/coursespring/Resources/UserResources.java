@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+// Controladores REST / Resource Layer (rest controllers)
+
+
 // Classe que disponibiliza um Recurso Web correspondente a entidade User. Testa se o REST do SpringBoot ta funcionando.
 
 @RestController // @RestController = Falando que a classe é um recurso Web, que implementado por um Controlador REST.
