@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+// Camada de dominío (Entities)
+
 // Anotações para o JPA, de como converter os objetos para o modelo relacional.
 @Entity
 @Table(name = "tb_user") // Cria a tabela de users.
