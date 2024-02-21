@@ -12,6 +12,8 @@ import com.palauro.coursespring.Services.exceptions.DatabaseException;
 import com.palauro.coursespring.Services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 
+// Camada de Serviço / Service Layer
+
 @Service // Registra "O que a classe é". Um serviço do Spring.
 public class UserService {
 
